@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Video Stays Mine: TC-UAP</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans"
         rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
@@ -24,6 +24,78 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+    /* More Results video matrix */
+    .vr-intro { max-width: 760px; margin: 0 auto 1.25rem; }
+    .vr-tabs { margin-bottom: 0.5rem; }
+    #vr-dataset-tabs { margin-top: -0.25rem; margin-bottom: 1.25rem; }
+    .vr-panels { max-width: 1100px; margin: 0 auto; }
+    .vr-grid { margin-bottom: 1.75rem; }
+    .vr-head {
+      display: flex;
+      width: 100%;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    .vr-head > span { flex: 1 1 0; text-align: center; }
+    .vr-head .vr-ours { color: #d97706; font-weight: 700; }
+    .vr-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      background: #000;
+    }
+    .vr-video + .vr-video { margin-top: 6px; }
+    @media (max-width: 600px) { .vr-head { font-size: 0.68rem; } }
+
+    /* prompt line */
+    .vr-prompt {
+      max-width: 760px;
+      margin: 0 auto 1.5rem;
+      font-family: 'Google Sans', sans-serif;
+      font-size: 0.9rem;
+      color: #555;
+      background: #f7f7f7;
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+    }
+    .vr-token { color: #999; font-style: italic; }
+
+    /* tabs: cleaner, on-brand (charcoal toggle + accent underline) */
+    .vr-tabs a { font-family: 'Google Sans', sans-serif; font-size: 0.8rem; }
+    .vr-tabs ul { border-bottom-color: #ededed; }
+    #vr-pipeline-tabs.is-toggle li a {
+      border-color: #dcdcdc;
+      color: #4a4a4a;
+      padding: 0.45em 1.5em;
+    }
+    #vr-pipeline-tabs.is-toggle li a:hover {
+      background: #f5f5f5;
+      border-color: #cfcfcf;
+      color: #363636;
+    }
+    #vr-pipeline-tabs.is-toggle li.is-active a,
+    #vr-pipeline-tabs.is-toggle li.is-active a:hover {
+      background: #363636;
+      border-color: #363636;
+      color: #fff;
+    }
+    #vr-dataset-tabs a {
+      color: #777;
+      border-bottom-width: 3px;
+      padding: 0.35em 1.1em;
+    }
+    #vr-dataset-tabs a:hover { color: #363636; border-bottom-color: #dcdcdc; }
+    #vr-dataset-tabs li.is-active a {
+      color: #d97706;
+      border-bottom-color: #d97706;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
 
@@ -138,20 +210,84 @@
 </section>
 
 
-<section class="section">
-  <div class="container is-max-desktop">
+<section class="section" id="more-results">
+  <div class="container is-max-widescreen">
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Qualitative Results</h2>
-        <div class="content has-text-justified">
+        <h2 class="title is-3">More Results</h2>
+        <div class="content has-text-justified vr-intro">
           <p>
-            Qualitative comparison under tuning-based and reference-based customization. Given videos
-            protected by different methods, downstream customization with <span class="dnerf">TC-UAP</span>
-            no longer produces faces that resemble the target identity, while image-protection
-            baselines still leak the identity.
+            Each row shows the customization results when the videos are protected by different
+            methods.
           </p>
         </div>
-        <img src="./static/images/fig_main.png" alt="Qualitative comparison" width="100%"/>
+
+        <p class="vr-prompt">Text prompt: &ldquo;The <span class="vr-token">p3r5on</span> is licking an ice-cream cone, smiling between licks while facing the camera.&rdquo;</p>
+
+        <div class="tabs is-centered is-toggle is-small vr-tabs" id="vr-pipeline-tabs">
+          <ul>
+            <li class="is-active"><a data-pipeline-tab="tuning">Tuning-based</a></li>
+            <li><a data-pipeline-tab="reference">Reference-based</a></li>
+          </ul>
+        </div>
+        <div class="tabs is-centered is-small vr-tabs" id="vr-dataset-tabs">
+          <ul>
+            <li class="is-active"><a data-dataset-tab="HDTF">HDTF</a></li>
+            <li><a data-dataset-tab="CelebVHQ">CelebV-HQ</a></li>
+            <li><a data-dataset-tab="TalkVid">TalkVid</a></li>
+          </ul>
+        </div>
+
+        <div class="vr-panels">
+          <div class="vr-panel" data-pipeline="tuning" data-dataset="HDTF">
+            <div class="vr-grid">
+              <div class="vr-head"><span>clean</span><span>PhotoGuard</span><span>Mist</span><span>IDProtector</span><span class="vr-ours">Ours</span></div>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/tuning_HDTF_id04.jpg"><source src="./static/videos/tuning_HDTF_id04.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/tuning_HDTF_id02.jpg"><source src="./static/videos/tuning_HDTF_id02.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/tuning_HDTF_id03.jpg"><source src="./static/videos/tuning_HDTF_id03.mp4" type="video/mp4"></video>
+            </div>
+          </div>
+          <div class="vr-panel" data-pipeline="tuning" data-dataset="CelebVHQ">
+            <div class="vr-grid">
+              <div class="vr-head"><span>clean</span><span>PhotoGuard</span><span>Mist</span><span>IDProtector</span><span class="vr-ours">Ours</span></div>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/tuning_CelebVHQ_id01.jpg"><source src="./static/videos/tuning_CelebVHQ_id01.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/tuning_CelebVHQ_id04.jpg"><source src="./static/videos/tuning_CelebVHQ_id04.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/tuning_CelebVHQ_id03.jpg"><source src="./static/videos/tuning_CelebVHQ_id03.mp4" type="video/mp4"></video>
+            </div>
+          </div>
+          <div class="vr-panel" data-pipeline="tuning" data-dataset="TalkVid">
+            <div class="vr-grid">
+              <div class="vr-head"><span>clean</span><span>PhotoGuard</span><span>Mist</span><span>IDProtector</span><span class="vr-ours">Ours</span></div>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/tuning_TalkVid_id01.jpg"><source src="./static/videos/tuning_TalkVid_id01.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/tuning_TalkVid_id02.jpg"><source src="./static/videos/tuning_TalkVid_id02.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/tuning_TalkVid_id05.jpg"><source src="./static/videos/tuning_TalkVid_id05.mp4" type="video/mp4"></video>
+            </div>
+          </div>
+          <div class="vr-panel" data-pipeline="reference" data-dataset="HDTF">
+            <div class="vr-grid">
+              <div class="vr-head"><span>clean</span><span>PhotoGuard</span><span>Mist</span><span>IDProtector</span><span class="vr-ours">Ours</span></div>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/reference_HDTF_id04.jpg"><source src="./static/videos/reference_HDTF_id04.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/reference_HDTF_id02.jpg"><source src="./static/videos/reference_HDTF_id02.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/reference_HDTF_id03.jpg"><source src="./static/videos/reference_HDTF_id03.mp4" type="video/mp4"></video>
+            </div>
+          </div>
+          <div class="vr-panel" data-pipeline="reference" data-dataset="CelebVHQ">
+            <div class="vr-grid">
+              <div class="vr-head"><span>clean</span><span>PhotoGuard</span><span>Mist</span><span>IDProtector</span><span class="vr-ours">Ours</span></div>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/reference_CelebVHQ_id01.jpg"><source src="./static/videos/reference_CelebVHQ_id01.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/reference_CelebVHQ_id04.jpg"><source src="./static/videos/reference_CelebVHQ_id04.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/reference_CelebVHQ_id03.jpg"><source src="./static/videos/reference_CelebVHQ_id03.mp4" type="video/mp4"></video>
+            </div>
+          </div>
+          <div class="vr-panel" data-pipeline="reference" data-dataset="TalkVid">
+            <div class="vr-grid">
+              <div class="vr-head"><span>clean</span><span>PhotoGuard</span><span>Mist</span><span>IDProtector</span><span class="vr-ours">Ours</span></div>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/reference_TalkVid_id01.jpg"><source src="./static/videos/reference_TalkVid_id01.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/reference_TalkVid_id02.jpg"><source src="./static/videos/reference_TalkVid_id02.mp4" type="video/mp4"></video>
+              <video class="vr-video" muted loop playsinline preload="none" poster="./static/images/posters/reference_TalkVid_id05.jpg"><source src="./static/videos/reference_TalkVid_id05.mp4" type="video/mp4"></video>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -184,6 +320,49 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function () {
+  var section = document.getElementById('more-results');
+  if (!section) return;
+  var state = { pipeline: 'tuning', dataset: 'HDTF' };
+
+  function update() {
+    section.querySelectorAll('.vr-panel').forEach(function (p) {
+      var match = p.getAttribute('data-pipeline') === state.pipeline &&
+                  p.getAttribute('data-dataset') === state.dataset;
+      p.style.display = match ? '' : 'none';
+      p.querySelectorAll('video').forEach(function (v) {
+        if (match) { v.play().catch(function () {}); }
+        else { v.pause(); }
+      });
+    });
+    section.querySelectorAll('[data-pipeline-tab]').forEach(function (a) {
+      a.parentElement.classList.toggle('is-active', a.getAttribute('data-pipeline-tab') === state.pipeline);
+    });
+    section.querySelectorAll('[data-dataset-tab]').forEach(function (a) {
+      a.parentElement.classList.toggle('is-active', a.getAttribute('data-dataset-tab') === state.dataset);
+    });
+  }
+
+  section.querySelectorAll('[data-pipeline-tab]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      state.pipeline = a.getAttribute('data-pipeline-tab');
+      update();
+    });
+  });
+  section.querySelectorAll('[data-dataset-tab]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      state.dataset = a.getAttribute('data-dataset-tab');
+      update();
+    });
+  });
+
+  update();
+})();
+</script>
 
 </body>
 </html>
