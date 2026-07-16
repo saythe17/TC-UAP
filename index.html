@@ -173,10 +173,11 @@
     <div class="hero-body">
       <img src="./static/images/teaser.png" alt="TC-UAP teaser" width="100%"/>
       <h2 class="subtitle has-text-centered is-size-6">
-        A malicious attacker may collect a user's public videos and use them to customize new videos
-        for harmful purposes. Our method <span class="dnerf">TC-UAP</span> applies imperceptible
-        perturbations to the user's videos before releasing, making any downstream customization
-        pipelines fail to produce usable results, protecting the user from that threat.
+        Protecting personal videos against unauthorized video customization. Once posted online,
+        a user&rsquo;s videos may be collected and exploited by either tuning-based or reference-based
+        customization. Our <span class="dnerf">TC-UAP</span> proactively protects the videos by
+        applying imperceptible temporally consistent perturbations, making both customization
+        methods fail to generate usable results.
       </h2>
     </div>
   </div>
@@ -204,13 +205,13 @@
             videos. (iii) Temporally inconsistent perturbations are not robust to temporal attacks.
             To address these challenges, we propose Temporally Consistent Universal Adversarial
             Perturbations (<span class="dnerf">TC-UAP</span>), the first protection method against
-            both reference- and tuning-based video customization. <span class="dnerf">TC-UAP</span>
+            both reference- and tuning-based video customization. TC-UAP
             optimizes an identity-level multi-frame UAP over sliding windows from multiple videos,
             accounting for local temporal dependencies induced by temporal compression in video VAE
             and enabling a single perturbation to protect unseen videos of varying lengths. Moreover,
             we introduce intrinsic temporal modeling and an extrinsic surrogate temporal-attack loss,
             which make the perturbation temporally consistent and robust to unseen temporal attacks.
-            Empirically, quantitative and qualitative results show that <span class="dnerf">TC-UAP</span>
+            Empirically, quantitative and qualitative results show that TC-UAP
             achieves the strongest identity protection compared with existing methods under both
             reference- and tuning-based video customization, and remains robust under multiple unseen
             temporal attacks.
