@@ -26,6 +26,18 @@
   <script src="./static/js/index.js"></script>
 
   <style>
+    .challenge-note {
+      margin: 0.75rem auto 0;
+      max-width: 760px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    .challenge-note a { color: #5f765a; }
+    .challenge-note a:hover,
+    .challenge-note a:focus-visible { color: #465b42; text-decoration: underline; }
+
     /* More Results video matrix */
     .vr-intro { max-width: 760px; margin: 0 auto 1.25rem; }
     .vr-tabs { margin-bottom: 0.5rem; }
@@ -161,6 +173,9 @@
               </span>
               -->
             </div>
+            <p class="challenge-note">
+              This work provides a basis for the <a href="https://lifegenip.cc/competition">ECCV 2026 LifeGenIP Challenge</a>.
+            </p>
           </div>
         </div>
       </div>
@@ -205,13 +220,13 @@
             videos. (iii) Temporally inconsistent perturbations are not robust to temporal attacks.
             To address these challenges, we propose Temporally Consistent Universal Adversarial
             Perturbations (<span class="dnerf">TC-UAP</span>), the first protection method against
-            both reference- and tuning-based video customization. TC-UAP
+            both reference- and tuning-based video customization. <span class="dnerf">TC-UAP</span>
             optimizes an identity-level multi-frame UAP over sliding windows from multiple videos,
             accounting for local temporal dependencies induced by temporal compression in video VAE
             and enabling a single perturbation to protect unseen videos of varying lengths. Moreover,
             we introduce intrinsic temporal modeling and an extrinsic surrogate temporal-attack loss,
             which make the perturbation temporally consistent and robust to unseen temporal attacks.
-            Empirically, quantitative and qualitative results show that TC-UAP
+            Empirically, quantitative and qualitative results show that <span class="dnerf">TC-UAP</span>
             achieves the strongest identity protection compared with existing methods under both
             reference- and tuning-based video customization, and remains robust under multiple unseen
             temporal attacks.
@@ -327,10 +342,8 @@
       <div class="column is-8">
         <div class="content has-text-centered">
           <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-            The page template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            This website is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br>
+            Webpage borrowed from <a href="https://nerfies.github.io/">Nerfies</a>.
           </p>
         </div>
       </div>

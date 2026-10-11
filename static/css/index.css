@@ -2,6 +2,22 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+@font-face {
+  font-family: 'Latin Modern Mono';
+  src: url('../fonts/lmmono10-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Latin Modern Mono';
+  src: url('../fonts/lmmonolt10-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 .footer .icon-link {
     font-size: 25px;
@@ -26,6 +42,33 @@ body {
 
 .teaser {
   font-family: 'Google Sans', sans-serif;
+}
+
+.teaser .container {
+  max-width: 1200px;
+}
+
+.teaser img {
+  display: block;
+  max-width: 1100px;
+  margin: 0 auto 1rem;
+}
+
+.teaser .subtitle {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.teaser .subtitle .dnerf {
+  display: inline-block;
+  font-family: 'Latin Modern Mono', 'LM Mono 10', monospace;
+  font-size: 1.1em;
+  color: #b55422;
+  background-color: #f8ebc9;
+  padding: 0.06em 0.3em;
+  line-height: 1;
+  font-weight: 700;
 }
 
 
